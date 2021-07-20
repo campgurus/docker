@@ -5,12 +5,12 @@
 - neoan3-cli
 
 ## Installation
-1. Fork this repository
-2. clone your fork
-3. compose:
+1. Fork, download or clone this repository
+2. compose
+3. see quick start
 
 ### start container
-`docker compose up`
+`docker compose up -d`
 
 > runs on http://localhost:8090 (initially returns forbidden as it's empty)
 
