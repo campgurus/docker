@@ -1,4 +1,4 @@
-# neoan3 docker container
+# neoan3-optimized docker setup
 
 - PHP8.1
 - mariaDB
@@ -23,6 +23,6 @@ After the containers are running, enter the shell:
 
 `docker compose exec neoan3 sh`
 
-Then, you can run neoan3 commands as usual:
+Then, you can run neoan3 cli commands as usual:
 
 `neoan3 new app`
