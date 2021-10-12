@@ -7,7 +7,7 @@
 
 ## Installation
 1. Fork, download or clone this repository
-2. compose up
+2. compose up (see Getting started)
 3. see quick start
 
 ### Getting started

@@ -16,6 +16,8 @@ RUN apache2ctl restart
 RUN wget https://getcomposer.org/installer -O - -q | php -- --quiet && \
     mv composer.phar /usr/local/bin/composer && \
     mkdir /usr/local/bin/composer-packages && \
+    mkdir /credentials && \
+    chown www-data:www-data /credentials -R && \
     touch /var/www/.safe-space && \
     composer global config vendor-dir /usr/local/bin/composer-packages
 RUN composer global require neoan3/neoan3 --ignore-platform-reqs
