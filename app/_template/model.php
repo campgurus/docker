@@ -35,7 +35,7 @@ class {{name.pascal}}Model implements Model{
     {
         if(!method_exists(self::class, $method)){
             $transform = new Transform('{{name.lower}}', self::$db);
-            return self::outgoing($transform->$method(...self::incoming($args)));
+            return self::outgoing($transform->$method(...self::incoming(...$args)));
         } else {
             return self::$method(...$args);
         }
@@ -45,9 +45,9 @@ class {{name.pascal}}Model implements Model{
      * @param array $transformResult
      * @return array
      */
-    private static function outgoing(array $transformResult): array
+    private static function outgoing(array $transformResult, $callFunctions = []): array
     {
-        return $transformResult;
+        return [$transformResult,$callFunctions];
     }
 
     /**
