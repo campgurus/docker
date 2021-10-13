@@ -3,6 +3,7 @@
 
 namespace Neoan3\Model\{{name.pascal}};
 
+use Neoan3\Provider\Model\InitProvider;
 use Neoan3\Provider\MySql\Database;
 use Neoan3\Provider\Model\Model;
 use Neoan3\Provider\MySql\Transform;
@@ -43,9 +44,10 @@ class {{name.pascal}}Model implements Model{
 
     /**
      * @param array $transformResult
+     * @param array|null $callFunctions
      * @return array
      */
-    private static function incoming(array $transformResult, $callFunctions = []): array
+    private static function incoming(array $transformResult, ?array $callFunctions = []): array
     {
         return [$transformResult,$callFunctions];
     }
