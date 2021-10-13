@@ -45,7 +45,7 @@ class {{name.pascal}}Model implements Model{
      * @param array $transformResult
      * @return array
      */
-    private static function outgoing(array $transformResult, $callFunctions = []): array
+    private static function incoming(array $transformResult, $callFunctions = []): array
     {
         return [$transformResult,$callFunctions];
     }
@@ -54,7 +54,7 @@ class {{name.pascal}}Model implements Model{
      * @param array $transactionRequest
      * @return array
      */
-    private static function incoming(array $transactionRequest): array
+    private static function outgoing(array $transactionRequest): array
     {
         return $transactionRequest;
     }
