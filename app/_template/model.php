@@ -43,11 +43,11 @@ class {{name.pascal}}Model implements Model{
     }
 
     /**
-     * @param array $transactionRequest
+     * @param mixed $transactionRequest
      * @param array|null $callFunctions
      * @return array
      */
-    private static function incoming(array $transactionRequest, ?array $callFunctions = []): array
+    private static function incoming(mixed $transactionRequest, ?array $callFunctions = []): array
     {
         return [$transactionRequest,$callFunctions];
     }
