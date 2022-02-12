@@ -1,4 +1,4 @@
-FROM php:8.0.8-apache
+FROM php:8.0.0-apache
 
 RUN buildDeps=" \
         wget \
@@ -13,7 +13,7 @@ RUN docker-php-ext-install  mysqli
 RUN docker-php-ext-install  zip
 RUN a2enmod rewrite
 RUN apache2ctl restart
-RUN wget https://getcomposer.org/installer -O - -q | php -- --quiet && \
+RUN wget https://getcomposer.org/installer -O - -q | php -- --quiet --version=2.1.9 && \
     mv composer.phar /usr/local/bin/composer && \
     mkdir /usr/local/bin/composer-packages && \
     mkdir /credentials && \
