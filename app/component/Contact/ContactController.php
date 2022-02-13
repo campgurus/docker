@@ -1,6 +1,6 @@
 <?php
 
-namespace Neoan3\Component\Contact;
+namespace Neoan3\Component\Contacts;
 
 use Neoan3\Frame\Demo;
 use Neoan3\Model\Contact\ContactModel;
