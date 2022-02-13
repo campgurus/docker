@@ -2,6 +2,7 @@
 
 namespace Neoan3\Component\Auth;
 
+use Neoan3\Core\RouteException;
 use Neoan3\Frame\Demo;
 use Neoan3\Model\User\UserModel;
 use Neoan3\Model\User\UserModelWrapper;
@@ -44,16 +45,15 @@ class AuthController extends Demo{
             $newUser = new UserModelWrapper($body);
             try {
                 $newUser->store()->rehydrate();
-                $authObject = $this->Auth->assign($newUser->getId(), ['all'], ['email'=>$newUser->getEmail()] );
-                return ['token' => $authObject->getToken()];
+                $user = $newUser->toArray();
             } catch (\Exception $e) {
-                // ignore for now. duplicate, email not set, etc
+                throw new RouteException('Malformed input', 400);
             }
         } else {
             // try login
-            $user = UserModelWrapper::retrieveOne(['email'=>trim($body['email'])]);
-            // verify password
-            return $user->toArray();
+            $user = UserModel::login($body);
         }
+        $authObject = $this->Auth->assign($user['id'], ['all'], ['email'=>$user['email']] );
+        return ['token' => $authObject->getToken()];
     }
 }

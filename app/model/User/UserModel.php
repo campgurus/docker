@@ -3,6 +3,7 @@
 
 namespace Neoan3\Model\User;
 
+use Neoan3\Core\RouteException;
 use Neoan3\Provider\Model\InitProvider;
 use Neoan3\Provider\MySql\Database;
 use Neoan3\Provider\Model\Model;
@@ -75,4 +76,16 @@ class UserModel implements Model{
         return $transactionResult;
     }
 
+    /**
+     * @throws RouteException
+     */
+
+    static function login($credentials)
+    {
+        $foundUser = self::$db->easy('user.id user.password',['email'=>$credentials['email']]);
+        if(empty($foundUser || !password_verify($credentials['password'],$foundUser[0]['password']))) {
+            throw new RouteException('Unauthorized', 401);
+        }
+        return self::get($foundUser[0]['id']);
+    }
 }
