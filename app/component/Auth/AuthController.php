@@ -55,6 +55,6 @@ class AuthController extends Demo{
         }
         $authObject = $this->Auth->assign($user['id'], ['all'], ['email'=>$user['email']] );
         $user = UserModelWrapper::retrieveOne(['email'=>trim($body['email'])]);
-        return [$user->toArray(), 'token' => $authObject->getToken()];
+        return ['user' => $user->toArray(), 'token' => $authObject->getToken()];
     }
 }
