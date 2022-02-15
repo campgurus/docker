@@ -6,6 +6,8 @@ interface Contact{
 	delete_date?: string,
 	name: string,
 	email?: string,
+	image_url?: string,
+	bio?: string,
 }
 
 export {Contact}

@@ -4,6 +4,8 @@ namespace Neoan3\Component\Contacts;
 
 use Neoan3\Frame\Demo;
 use Neoan3\Model\Contact\ContactModel;
+use Neoan3\Model\Contact\ContactModelWrapper;
+use Neoan3\Provider\Auth\Authorization;
 use Neoan3\Provider\Model\InitModel;
 
 /**
@@ -24,26 +26,42 @@ class ContactsController extends Demo{
     * @return array
     */
     #[InitModel(ContactModel::class)]
+    #[Authorization('restrict')]
     function getContacts(?string $id = null, array $params = []): array
     {
         // Restrict access to logged in users?
-        // $this->Auth->restrict();
+//        $this->Auth->restrict();
         // (or without dependency on Demo-Frame: $this->provider['auth']->restrict())
         if($id){
-            // Retrieve a model?
-            // return $this->loadModel(\Neoan3\Model\Contacts\ContactsModel::class)::get($id);
+            return ContactModel::get($id);
         }
-        return $params;
+        return ContactModel::find([]);
     }
 
     /**
      * POST: api.v1/contacts
-     * @param $body
+     * @param array $body
      * @return array
      */
     #[InitModel(ContactModel::class)]
-    function postContacts(array $body): array
+    function postContact(array $body): array
     {
-        return $body;
+        return ContactModel::create($body);
+    }
+
+    /**
+     * PUT: api.v1/contacts/{id}
+     * @param string|null $id
+     * @param array $body
+     * @return array
+     * @throws \Exception
+     */
+    #[InitModel(ContactModel::class)]
+    #[Authorization('restrict')]
+    // everything before the last parameter is a string in the url
+    function putContacts(?string $id = null, array $body = []): array
+    {
+        $update = new ContactModelWrapper($body);
+        return $update->store('update')->toArray();
     }
 }

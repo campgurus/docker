@@ -13,6 +13,8 @@ class ContactModelWrapper extends ContactModel implements ModelWrapper
 	private ?string $delete_date = null;
 	private string $name;
 	private ?string $email = null;
+	private ?string $image_url = null;
+	private ?string $bio = null;
 
 	public function getId(): ?string
 	{
@@ -66,6 +68,28 @@ class ContactModelWrapper extends ContactModel implements ModelWrapper
 	public function setEmail($input): ContactModelWrapper
 	{
 		$this->email = $input;
+		return $this;
+	}
+
+	public function getImageUrl(): ?string
+	{
+		return $this->image_url;
+	}
+
+	public function setImageUrl($input): ContactModelWrapper
+	{
+		$this->image_url = $input;
+		return $this;
+	}
+
+	public function getBio(): ?string
+	{
+		return $this->bio;
+	}
+
+	public function setBio($input): ContactModelWrapper
+	{
+		$this->bio = $input;
 		return $this;
 	}
 
