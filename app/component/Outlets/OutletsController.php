@@ -5,6 +5,7 @@ namespace Neoan3\Component\Outlets;
 use Neoan3\Frame\Demo;
 use Neoan3\Model\Contact\ContactModel;
 use Neoan3\Model\Outlet\OutletModel;
+use Neoan3\Provider\Auth\Authorization;
 use Neoan3\Provider\Model\InitModel;
 
 /**
@@ -25,13 +26,16 @@ class OutletsController extends Demo{
     * @return array
     */
     #[InitModel(OutletModel::class)]
-    #[InitModel(ContactModel::class)]
+    #[Authorization('restrict')]
     function getOutlets(?string $id = null, array $params = []): array
     {
-        $contact = ContactModel::find([])[0];
-        $outlet = OutletModel::find([])[0];
-        $this->provider['db']->smart('>insert into contact_outlet set outlet_id=unhex({{outlet_id}}), contact_id=unhex({{contact_id}})', ['outlet_id' => $outlet['id'], 'contact_id' => $contact['id']]);
-        return $params;
+        // Restrict access to logged in users?
+//        $this->Auth->restrict();
+        // (or without dependency on Demo-Frame: $this->provider['auth']->restrict())
+        if($id){
+            return OutletModel::get($id);
+        }
+        return OutletModel::find([]);
     }
 
     /**
