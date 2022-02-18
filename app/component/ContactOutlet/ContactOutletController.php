@@ -33,12 +33,18 @@ class ContactOutletController extends Demo{
     }
 
     /**
-     * POST: api.v1/contact-outlet
-     * @param $body
+     * DELETE: api.v1/contact-outlet
+     * @param array $body
      * @return array
      */
     function deleteContactOutlet(array $body): array
     {
-        return $this->provider['db']->smart('>delete from contact_outlet where outlet_id=unhex({{outlet_id}}) and contact_id=unhex({{contact_id}})', ['outlet_id' => $body['outlet_id'], 'contact_id' => $body['contact_id']]);
+        $sql = '>delete from contact_outlet where';
+        $condition = [];
+        foreach ($body as $key=>$value) {
+            $sql.=(!empty($condition)?' AND ': ' ')."$key = unhex({{$key}})";
+            $condition[$key] = $value;
+        }
+        return $this->provider['db']->smart($sql, $condition);
     }
 }

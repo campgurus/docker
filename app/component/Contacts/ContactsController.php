@@ -2,6 +2,7 @@
 
 namespace Neoan3\Component\Contacts;
 
+use Neoan3\Component\ContactOutlet\ContactOutletController;
 use Neoan3\Frame\Demo;
 use Neoan3\Model\Contact\ContactModel;
 use Neoan3\Model\Contact\ContactModelWrapper;
@@ -63,5 +64,17 @@ class ContactsController extends Demo{
     {
         $update = new ContactModelWrapper($body);
         return $update->store('update')->toArray();
+    }
+
+    /**
+     * @param string $id
+     * @return array
+     */
+    #[InitModel(ContactModel::class)]
+    function deleteContact(string $id): array
+    {
+        $connections = new ContactOutletController();
+        $connections->deleteContactOutlet(["contact_id"=>$id]);
+        return ContactModel::delete($id); //soft delete
     }
 }
