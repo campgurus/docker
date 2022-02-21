@@ -51,6 +51,17 @@
                 0 => '1.x-dev',
             ),
         ),
+        'neoan3-apps/curl' => array(
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../neoan3-apps/curl',
+            'aliases' => array(
+                0 => '9999999-dev',
+            ),
+            'reference' => '423cf4ee668419841633544fab0206a65a4650bc',
+            'dev_requirement' => false,
+        ),
         'neoan3-apps/db' => array(
             'pretty_version' => '0.3.5',
             'version' => '0.3.5.0',

@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInit5e6051694634ee8a867b5f173940dc93
 {
     public static $files = array (
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '9411e91565e343e129079ce22f637fa5' => __DIR__ . '/../..' . '/_neoan/base/_includes.php',
     );
@@ -93,10 +93,11 @@ class ComposerStaticInit5e6051694634ee8a867b5f173940dc93
         'Neoan3\\Apps\\' => 
         array (
             0 => __DIR__ . '/..' . '/neoan3-apps/db',
-            1 => __DIR__ . '/..' . '/neoan3-apps/session',
-            2 => __DIR__ . '/..' . '/neoan3-apps/jwt',
+            1 => __DIR__ . '/..' . '/neoan3-apps/jwt',
+            2 => __DIR__ . '/..' . '/neoan3-apps/session',
             3 => __DIR__ . '/..' . '/neoan3-apps/stateless',
             4 => __DIR__ . '/..' . '/neoan3-apps/template',
+            5 => __DIR__ . '/..' . '/neoan3-apps/curl',
         ),
         'Neoan3\\Api\\' => 
         array (

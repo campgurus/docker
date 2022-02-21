@@ -36,6 +36,7 @@ class ContactsController extends Demo{
         if($id){
             return ContactModel::get($id);
         }
+//        $test = $this->test();
         return ContactModel::find([]);
     }
 
@@ -45,9 +46,9 @@ class ContactsController extends Demo{
      * @return array
      */
     #[InitModel(ContactModel::class)]
-    function postContact(array $body): array
+    function postContacts(array $body): array
     {
-        return ContactModel::create($body);
+        return ContactModel::create($body); // why not ContactModel->create() ?
     }
 
     /**
@@ -71,7 +72,7 @@ class ContactsController extends Demo{
      * @return array
      */
     #[InitModel(ContactModel::class)]
-    function deleteContact(string $id): array
+    function deleteContacts(string $id): array
     {
         $connections = new ContactOutletController();
         $connections->deleteContactOutlet(["contact_id"=>$id]);

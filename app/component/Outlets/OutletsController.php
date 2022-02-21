@@ -2,9 +2,12 @@
 
 namespace Neoan3\Component\Outlets;
 
+use Neoan3\Apps\CurlException;
+use Neoan3\Core\RouteException;
 use Neoan3\Frame\Demo;
 use Neoan3\Model\Contact\ContactModel;
 use Neoan3\Model\Outlet\OutletModel;
+use Neoan3\Model\Outlet\OutletModelWrapper;
 use Neoan3\Provider\Auth\Authorization;
 use Neoan3\Provider\Model\InitModel;
 
@@ -42,10 +45,37 @@ class OutletsController extends Demo{
      * POST: api.v1/outlets
      * @param $body
      * @return array
+     * @throws RouteException
      */
     #[InitModel(OutletModel::class)]
-    function postOutlets(array $body): array
+    function postOutlets($body): array
     {
-        return OutletModel::create($body);
+        try {
+            $data = $this->getMeta($body['website']);
+            return OutletModel::create([
+                'name' => $data['title'],
+                'description' => $data['description'],
+                'image_url' => $data['image'],
+                'website' => $body['website']
+            ]);
+        } catch(CurlException $e) {
+            throw new RouteException($e->getMessage(), 400);
+        }
+    }
+
+    /**
+     * PUT: api.v1/outlets/{id}
+     * @param string|null $id
+     * @param array $body
+     * @return array
+     * @throws \Exception
+     */
+    #[InitModel(OutletModel::class)]
+    #[Authorization('restrict')]
+    // everything before the last parameter is a string in the url
+    function putOutlets(?string $id = null, array $body = []): array
+    {
+        $update = new OutletModelWrapper($body);
+        return $update->store('update')->toArray();
     }
 }

@@ -15,7 +15,7 @@ return array(
     'Neoan3\\Model\\' => array($baseDir . '/model'),
     'Neoan3\\Core\\' => array($baseDir . '/_neoan/base'),
     'Neoan3\\Component\\' => array($baseDir . '/component'),
-    'Neoan3\\Apps\\' => array($vendorDir . '/neoan3-apps/db', $vendorDir . '/neoan3-apps/session', $vendorDir . '/neoan3-apps/jwt', $vendorDir . '/neoan3-apps/stateless', $vendorDir . '/neoan3-apps/template'),
+    'Neoan3\\Apps\\' => array($vendorDir . '/neoan3-apps/db', $vendorDir . '/neoan3-apps/jwt', $vendorDir . '/neoan3-apps/session', $vendorDir . '/neoan3-apps/stateless', $vendorDir . '/neoan3-apps/template', $vendorDir . '/neoan3-apps/curl'),
     'Neoan3\\Api\\' => array($baseDir . '/_neoan/api'),
     'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),

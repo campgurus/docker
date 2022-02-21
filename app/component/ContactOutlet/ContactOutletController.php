@@ -2,6 +2,7 @@
 
 namespace Neoan3\Component\ContactOutlet;
 
+use Neoan3\Apps\Db;
 use Neoan3\Frame\Demo;
 use Neoan3\Model\Contact\ContactModel;
 use Neoan3\Model\Outlet\OutletModel;
@@ -42,9 +43,9 @@ class ContactOutletController extends Demo{
         $sql = '>delete from contact_outlet where';
         $condition = [];
         foreach ($body as $key=>$value) {
-            $sql.=(!empty($condition)?' AND ': ' ')."$key = unhex({{$key}})";
+            $sql.=(!empty($condition)?' AND ': ' ')."$key = unhex({{{$key}}})";
             $condition[$key] = $value;
         }
-        return $this->provider['db']->smart($sql, $condition);
+        return $this->provider['db']->smart($sql, $condition);\
     }
 }

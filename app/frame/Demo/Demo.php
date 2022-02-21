@@ -9,6 +9,7 @@
 namespace Neoan3\Frame;
 
 use Exception;
+use Neoan3\Apps\Curl;
 use Neoan3\Core\Serve;
 use Neoan3\Provider\Attributes\UseAttributes;
 use Neoan3\Provider\Auth\Auth;
@@ -95,5 +96,21 @@ class Demo extends Serve
                 'https://cdn.jsdelivr.net/npm/gaudiamus-css@latest/css/gaudiamus.min.css',
             ]
         ];
+    }
+
+    /**
+     * @throws \Neoan3\Apps\CurlException
+     */
+    function getMeta(string $url): array
+    {
+        $meta = Curl::get($url); //returns html of the url/page
+        preg_match_all('~<\s*meta\b.*\bproperty="(og:[^"]+)"\s.*\bcontent="([^"]*)~i', $meta, $matches);
+        $metadata = array(
+            "description" => $matches[2][0],
+            "title" => $matches[2][1],
+            "image" => $matches[2][2]
+        );
+
+        return $metadata;
     }
 }

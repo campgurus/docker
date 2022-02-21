@@ -44,6 +44,7 @@
       <path value="$PROJECT_DIR$/app/vendor/doctrine/instantiator" />
       <path value="$PROJECT_DIR$/app/vendor/firebase/php-jwt" />
       <path value="$PROJECT_DIR$/app/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/app/vendor/neoan3-apps/curl" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />
