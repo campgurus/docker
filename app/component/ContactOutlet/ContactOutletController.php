@@ -46,6 +46,6 @@ class ContactOutletController extends Demo{
             $sql.=(!empty($condition)?' AND ': ' ')."$key = unhex({{{$key}}})";
             $condition[$key] = $value;
         }
-        return $this->provider['db']->smart($sql, $condition);\
+        return $this->provider['db']->smart($sql, $condition);
     }
 }
